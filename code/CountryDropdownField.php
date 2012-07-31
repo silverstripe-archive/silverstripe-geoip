@@ -23,7 +23,7 @@ class CountryDropdownField extends DropdownField {
 		$this->defaultToVisitorCountry = $val;
 	}
 	
-	function Field() {
+	function Field($properties = array()) {
 		$source = $this->getSource();
 		
 		if($this->defaultToVisitorCountry && !$this->value || !isset($source[$this->value])) {
