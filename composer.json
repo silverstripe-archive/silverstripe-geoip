@@ -1,5 +1,5 @@
 {
-	"name": "silverstripe-labs/geoip",
+	"name": "silverstripe/geoip",
 	"description": "GeoIP module for SivlerStripe.",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe-labs", "geoip"],
