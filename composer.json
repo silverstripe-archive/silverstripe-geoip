@@ -1,0 +1,16 @@
+{
+	"name": "silverstripe-labs/geoip",
+	"description": "GeoIP module for SivlerStripe.",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe-labs", "geoip"],
+	"authors": [
+	{
+		"name": "Sean Harvey",
+		"email": "sean@silverstripe.com"
+	}
+	],
+	"require":
+	{
+		"silverstripe/framework": "2.4.*"
+	}
+}
