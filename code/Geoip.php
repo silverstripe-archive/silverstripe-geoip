@@ -24,7 +24,7 @@ class Geoip {
 	protected static $iso_3166_countryCodes = array(
 		'A1' => "Anonymous Proxy",
 		'A2' => "Satellite Provider",
-		'A3' => "Internal Netwrok",
+		'A3' => "Internal Network",
 		'AD' => "Andorra",
 		'AE' => "United Arab Emirates",
 		'AF' => "Afghanistan",
