@@ -1,6 +1,6 @@
 {
 	"name": "silverstripe/geoip",
-	"description": "GeoIP module for SivlerStripe.",
+	"description": "GeoIP module for SilverStripe.",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe-labs", "geoip"],
 	"authors": [
@@ -11,6 +11,6 @@
 	],
 	"require":
 	{
-		"silverstripe/framework": "2.4.*"
+		"silverstripe/framework": ">=2.4.0"
 	}
 }
