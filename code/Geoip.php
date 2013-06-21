@@ -366,7 +366,7 @@ class Geoip {
 	 * @return string|bool
 	 */
 	static function visitor_country() {
-		if(ereg('^dev(\\.|$)', $_SERVER['HTTP_HOST']) && isset($_GET['country'])){
+		if (Director::isDev() && isset($_GET['country'])){
 			 $code = $_GET['country'];
 		}
 		elseif (isset($_SERVER['REMOTE_ADDR']) && self::is_enabled()) {
