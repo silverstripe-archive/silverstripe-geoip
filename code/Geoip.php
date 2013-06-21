@@ -369,12 +369,12 @@ class Geoip {
 		if(ereg('^dev(\\.|$)', $_SERVER['HTTP_HOST']) && isset($_GET['country'])){
 			 $code = $_GET['country'];
 		}
-		else if(isset($_SERVER['REMOTE_ADDR']) && self::is_enabled()) {
+		elseif (isset($_SERVER['REMOTE_ADDR']) && self::is_enabled()) {
 			$code = Geoip::ip2country($_SERVER['REMOTE_ADDR'], true);
 		}	
 		  
 		// if geoip fails, lets default to default country code (if any)
-		if(!isset($code) || !$code) {
+		if (!isset($code) || !$code) {
 			$code = self::get_default_country_code();
 		}
 		   
