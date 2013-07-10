@@ -30,6 +30,6 @@ class CountryDropdownField extends DropdownField {
 			$this->value = ($vc = Geoip::visitor_country()) ? $vc : Geoip::get_default_country_code();
 		}
 		
-		return parent::Field($array);
+		return parent::Field($properties);
 	}
 }
