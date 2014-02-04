@@ -11,6 +11,26 @@ class Geoip {
 	private static $enabled = true;
 	
 	private static $default_country_code = false;
+	
+	/** 
+	 * The location of the GeoIP IPv4 database (optional).
+	 */
+	private static $geoIP4Database = false;
+	
+	/** 
+	 * The location of the GeoIP IPv6 database (optional).
+	 */
+	private static $geoIP6Database = false;
+	
+	/**
+	 * Caches the Net_GeoIP object for IPv4 lookups.
+	 */
+	private static $geoIP4Obj = null;
+	
+	/**
+	 * Caches the Net_GeoIP object for IPv6 lookups.
+	 */
+	private static $geoIP6Obj = null;
 
 	/** 
 	 * ISO 3166 Country Codes
@@ -289,6 +309,46 @@ class Geoip {
 		return (bool) self::$enabled;
 	}
 	
+	/** 
+	 * Sets the database files to use with GeoIP. This is only necessary if
+	 * you cannot use geoiplocation for some reason (e.g., exec() is disabled on
+	 * the server.
+	 *
+	 * @param ipv4DB the filename for the IPv4 database. Set to false (the 
+	 * default) if you don't want to use this database
+	 * @param ipv6DB the filename for the IPv6 database. Set to false (the 
+	 * default) if you don't want to use this database
+	 */
+	public static function setGeoIPDatabases( $ipv4DB = false, $ipv6DB = false) {
+		self::$geoIP4Database = $ipv4DB;
+		self::$geoIP6Database = $ipv6DB;
+	}
+	
+	/** 
+	 * Returns true if using GeoIP is enabled.
+	 */
+	public static function isGeoIPenabled() {
+		if(self::$geoIP4Database != false || self::$geoIP6Database != false) {
+			return true;
+		}
+		else {
+			return false;
+		} 
+	}
+	
+	/** 
+	 * Set the include directory containing the Net_GeoIP include files. 
+	 * Provided just in case the server's PEAR include directory isn't set up
+	 * properly.
+	 *
+	 * NOTE: Include the trailing slash.
+	 *
+	 * @param $path the path to the Net_GeoIP include files.
+	 */
+	private static function setGeoIPIncludeDir($path) {
+		self::$geoIPIncludeDir = $path;
+	}
+	
 	/**
 	 * Set the default country code
 	 *
@@ -308,6 +368,15 @@ class Geoip {
 	}
 	
 	/** 
+	 * Returns the IP version of the given address.
+	 *
+	 * @param $address the IP address as a string
+	 */
+	public static function ipVersion($address) {
+		return strpos($address, ":") === false ? 4 : 6;
+	}
+	
+	/** 
 	 * Find the country for an IP address.
 	 * 
 	 * By default, it will return an array, keyed by
@@ -323,24 +392,55 @@ class Geoip {
 	static function ip2country($address, $codeOnly = false) {
 		if(!self::is_enabled()) return false;
 		
-		// Return if in CLI, or you'll get this error: "sh: geoiplookup: command not found"
-		if(Director::is_cli() || !function_exists('exec')) return false;
-		
-		$cmd = 'geoiplookup ' . escapeshellarg($address);
-		exec($cmd, $result, $code);
-		// Note: At time of writing, $result is always zero for this program
-
-		if($code == 127) return false;
-		if($result == false) return false;
-		
-		// Always returns one line of code, e.g. :
-		// Geoip Country Edition: GB, United Kingdom
-		// NZ
-		$country = $result[0];
-
-		$start = strpos($country, ':');
-		if($start) $start += 2;
-		$code = substr($country, $start, 2); // skip space
+		// Use Net_GeoIP if it has been enabled
+		if(self::isGeoIPenabled()) {
+			require_once('GeoIPLookup.php');
+			if(self::ipVersion($address) == 6){
+				if(self::$geoIP6Database) {
+					if(!self::$geoIP6Obj) {
+						self::$geoIP6Obj = 
+							GeoIPLookup::getInstance(Director::baseFolder(). '/' . self::$geoIP6Database);
+					}
+					$code = self::$geoIP6Obj->lookupCountryCode($address);
+				}
+				else {
+					$code = '--';
+				}
+			}
+			else {
+				if(self::$geoIP4Database) {
+					if(!self::$geoIP4Obj) {
+						self::$geoIP4Obj = 
+							GeoIPLookup::getInstance(Director::baseFolder(). '/' . self::$geoIP4Database);
+					}
+					$code = self::$geoIP4Obj->lookupCountryCode($address);
+				}
+				else {
+					$code = '--';
+				}
+			}
+			$country = '';
+		}
+		else {
+			// Return if in CLI, or you'll get this error: "sh: geoiplookup: command not found"
+			if(Director::is_cli() || !function_exists('exec')) return false;
+			
+			$cmd = 'geoiplookup ' . escapeshellarg($address);
+			exec($cmd, $result, $code);
+			// Note: At time of writing, $result is always zero for this program
+	
+			if($code == 127) return false;
+			if($result == false) return false;
+			
+			// Always returns one line of code, e.g. :
+			// Geoip Country Edition: GB, United Kingdom
+			// NZ
+			$country = $result[0];
+	
+			$start = strpos($country, ':');
+			if($start) $start += 2;
+			$code = substr($country, $start, 2); // skip space
+		}
 
 		if($code == 'IP' || $code == '--') {
 			 if(self::$default_country_code) {
