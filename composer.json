@@ -3,14 +3,14 @@
 	"description": "GeoIP module for SilverStripe.",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe-labs", "geoip"],
-	"authors": [
-	{
+	"authors": [{
 		"name": "Sean Harvey",
 		"email": "sean@silverstripe.com"
-	}
-	],
-	"require":
-	{
+	}],
+	"require": {
 		"silverstripe/framework": ">=2.4.0"
+	},
+	"extra": {
+		"installer-name": "geoip"
 	}
 }
