@@ -394,7 +394,7 @@ class Geoip {
 		
 		$checks = array(
 			'www.paradise.net.nz' => array('code'=>'NZ','name'=>'New Zealand'),
-			'news.com.au'  			 => array('code'=>'AU','name'=>'Australia'),
+			'www.gov.au'  			 => array('code'=>'AU','name'=>'Australia'),
 			'www.google.com' 		 => array('code'=>'US','name'=>'United States'),
 			'a.b.c.d.e.f.g' 		 => false, // test failure :)
 		);
