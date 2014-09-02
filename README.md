@@ -5,6 +5,29 @@
 Sean Harvey (Nickname: sharvey, halkyon)
 <sean (at) silverstripe (dot) com>
 
+## Requirements
+
+The GeoIP Binary
+
+#### FreeBSD
+
+```
+cd /usr/ports/net/GeoIP
+make install clean
+```
+
+#### Debian/Ubuntu
+
+```
+apt-get install geoip-bin geoip-database
+```
+
+#### CentOS/RHEL
+
+```
+yum install GeoIP GeoIP-data
+```
+
 ## Installation
 
 ```
