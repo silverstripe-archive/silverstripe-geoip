@@ -8,7 +8,7 @@
 		"email": "sean@silverstripe.com"
 	}],
 	"require": {
-		"silverstripe/framework": "^2.4.0"
+		"silverstripe/framework": "^2.4 || ^3.0"
 	},
 	"extra": {
 		"installer-name": "geoip"
