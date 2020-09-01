@@ -1,2 +1,65 @@
-sh: 1: /sslint-ecs: not found
-sh: 1: /sslint-stan: not found
+
+
+---------------------------------
+  Running Easy Conding Standards
+---------------------------------
+  directory of script: /home/ssu/.config/composer/vendor/bin
+  directory to analyse: /var/www/ss3/upgrades/ecommerce-root/geoip/src
+  also check (e.g. _config.php file): /var/www/ss3/upgrades/ecommerce-root/app/_config.php
+  ecs config file: /home/ssu/.config/composer/vendor/bin/../sunnysideup/easy-coding-standards/ecs.yml
+---------------------------------
+
+
+EasyCodingStandard v6.1.0
+Config file: /home/ssu/.config/composer/vendor/sunnysideup/easy-coding-standards/ecs.yml
+ 0/1 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%
+ 1/1 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+
+ [OK] No errors found. Great job - your code is shiny in style!                                                         
+
+EasyCodingStandard v6.1.0
+Config file: /home/ssu/.config/composer/vendor/sunnysideup/easy-coding-standards/ecs.yml
+ 0/1 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%
+ 1/1 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+
+ [OK] No errors found. Great job - your code is shiny in style!                                                         
+
+
+
+---------------------------------
+  Running PHP STAN
+---------------------------------
+  directory of script: /home/ssu/.config/composer/vendor/bin
+  directory to analyse: /var/www/ss3/upgrades/ecommerce-root/geoip/src
+  also check (e.g. _config.php file): /var/www/ss3/upgrades/ecommerce-root/app/_config.php
+  level: 4 (1/6)
+  php stan config file: /home/ssu/.config/composer/vendor/bin/../sunnysideup/easy-coding-standards/phpstan.neon
+---------------------------------
+
+
+ 0/1 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[2K 1/1 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+
+ [OK] No errors                                                                                                         
+
+ 0/1 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[2K 1/1 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   Geoip.php                                                                                                                                                   
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  283    PHPDoc tag @param has invalid value ($bool): Unexpected token "$bool", expected TOKEN_IDENTIFIER at offset 167                                              
+  375    Using $this in static method Sunnysideup\Geoip\Geoip::ip2country().                                                                                         
+  414    Method Sunnysideup\Geoip\Geoip::ip2country_check() should return bool but empty return statement found.                                                     
+  431    Part $expectedResponse (array('code' => 'AU'|'NZ'|'US', 'name' => 'Australia'|'New Zealand'|'United States')) of encapsed string cannot be cast to string.  
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------------------------------------------------------------------------------------------------- 
+  Error                                                                                            
+ ------------------------------------------------------------------------------------------------- 
+  Ignored error pattern #Access to an undefined property# was not matched in reported errors.      
+  Ignored error pattern #Call to an undefined method# was not matched in reported errors.          
+  Ignored error pattern #on an unknown class [a-zA-Z0-9\\_]+# was not matched in reported errors.  
+  Ignored error pattern #with incorrect case:# was not matched in reported errors.                 
+ ------------------------------------------------------------------------------------------------- 
+
+ [ERROR] Found 8 errors                                                                                                 
+
