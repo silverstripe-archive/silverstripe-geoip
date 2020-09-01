@@ -1,16 +1,19 @@
 {
-	"name": "sunnysideup/geoip",
-	"description": "GeoIP module for SilverStripe.",
-	"type": "silverstripe-module",
-	"keywords": ["silverstripe-labs", "geoip"],
-	"authors": [{
-		"name": "Sean Harvey",
-		"email": "sean@silverstripe.com"
-	}],
-	"require": {
-		"silverstripe/framework": "^2.4 || ^3.0"
-	},
-	"extra": {
-		"installer-name": "geoip"
-	}
+    "name": "sunnysideup/geoip",
+    "description": "GeoIP module for SilverStripe.",
+    "type": "silverstripe-module",
+    "keywords": [
+        "silverstripe-labs",
+        "geoip"
+    ],
+    "authors": [
+        {
+            "name": "Sean Harvey",
+            "email": "sean@silverstripe.com"
+        }
+    ],
+    "require": [],
+    "extra": {
+        "installer-name": "geoip"
+    }
 }
