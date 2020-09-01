@@ -2,7 +2,9 @@
 
 namespace Sunnysideup\Geoip;
 
-use Director;
+
+use SilverStripe\Control\Director;
+
 
 
 /**

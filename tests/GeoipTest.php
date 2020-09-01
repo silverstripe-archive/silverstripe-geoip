@@ -1,5 +1,8 @@
 <?php
 
+use Sunnysideup\Geoip\Geoip;
+use SilverStripe\Dev\SapphireTest;
+
 class GeoipTest extends SapphireTest
 {
     
