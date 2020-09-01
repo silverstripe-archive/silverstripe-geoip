@@ -1,5 +1,10 @@
 <?php
 
+namespace Sunnysideup\Geoip;
+
+use Director;
+
+
 /**
  * Routines for IP to country resolution.
  * 
